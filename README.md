@@ -1,5 +1,5 @@
 # 🌐 Career Katta - Digital Diary (करिअर कट्टा - डिजिटल डायरी)
-
+Demo Live Link - (https://ganesh-j-m.github.io/Career-Diary/)
 An automated, secure, and highly restricted web application designed for students under the **Career Katta** initiative (supported by the Maharashtra Information Technology Support Centre - MITSC). This digital portal replaces the traditional paper diary, allowing students to efficiently log their monthly academic progress, track career goals, and receive digital certificates upon completion.
 
 ---
