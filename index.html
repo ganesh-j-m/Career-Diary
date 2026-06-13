@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>करिअर कट्टा - डिजिटल डायरी</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@500;700&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Khand:wght=500;700&family=Poppins:wght=300;400;500;600;700&family=Great+Vibes&family=Cinzel:wght=400;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
@@ -16,7 +18,7 @@
         }
 
         .diary-card {
-            background: #fff;
+            background: #ffffff;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
             border-top: 12px solid #0d1b2a;
@@ -24,12 +26,38 @@
             padding: 40px;
         }
 
+        /* लोगो आणि हेडरसाठी खास स्टाईल */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .header-logo {
+            max-width: 100px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-logo {
+                max-width: 70px;
+            }
+        }
+
         .main-title {
             font-family: 'Khand', sans-serif;
             font-size: 3rem;
-            color: #0d1b2a;
+            color: #2582b4;
             text-align: center;
             font-weight: 700;
+            margin-bottom: 0;
         }
 
         .page-header {
@@ -73,44 +101,75 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="diary-card">
-                    <div class="text-center mb-5">
-                        <p class="text-muted fw-bold small">MAHARASHTRA STATE DEPARTMENT OF HIGHER & TECHNICAL EDUCATION & MITSC</p>
-                        <h1 class="main-title">करिअर कट्टा</h1>
-                        <div class="badge bg-dark fs-3 px-4 py-2 my-2" style="font-family:'Khand'">डिजिटल डायरी</div>
+
+                    <!-- अपडेटेड हेडर: डावा लोगो, मधील मजकूर आणि उजवा लोगो -->
+                    <div class="header-container mb-5">
+                        <img src="left-logo1.png" alt="Maharashtra Government Logo" class="header-logo">
+
+                        <div class="text-center flex-grow-1">
+                            <p class="text-muted fw-bold small mb-2">MAHARASHTRA STATE DEPARTMENT OF HIGHER & TECHNICAL
+                                EDUCATION & MITSC</p>
+                            <h1 class="main-title"><b>करिअर कट्टा</b></h1>
+                            <div class="badge bg-primary fs-3 px-4 py-2 my-2 mt-10" style="font-family:'Khand'">डिजिटल
+                                डायरी</div>
+                        </div>
+
+                        <img src="right-logo.png" alt="MITSC Logo" class="header-logo">
                     </div>
 
                     <form id="diaryForm">
                         <div class="page-header">भाग १: वैयक्तिक व महाविद्यालयीन तपशील</div>
-                        
+
                         <div id="phone-check-container" class="mb-4 p-3 border rounded bg-light">
-                            <label class="form-label fw-bold">🔐 तुमचा १० अंकी WhatsApp क्रमांक टाका : <span class="required-star">*</span></label>
+                            <label class="form-label fw-bold">🔐 तुमचा १० अंकी WhatsApp क्रमांक टाका : <span
+                                    class="required-star">*</span></label>
                             <div class="input-group">
-                                <input type="tel" class="form-control" id="contactNumber" required pattern="[0-9]{10}" placeholder="उदा. 98XXXXXXXX">
-                                <button type="button" class="btn btn-primary fw-bold" onclick="verifyAndLoadProfile()">पुढे जा / तपासा</button>
+                                <input type="tel" class="form-control" id="contactNumber" required pattern="[0-9]{10}"
+                                    placeholder="उदा. 98XXXXXXXX">
+                                <button type="button" class="btn btn-primary fw-bold"
+                                    onclick="verifyAndLoadProfile()">पुढे जा / तपासा</button>
                             </div>
                         </div>
 
                         <div id="profile-inputs-container" class="d-none">
                             <div class="row">
-                                <div class="col-md-12 mb-3"><label class="form-label">१) महाविद्यालयाचे नाव : <span class="required-star">*</span></label><input type="text" class="form-control" id="collegeName" required></div>
-                                <div class="col-md-6 mb-3"><label class="form-label">२) प्राचार्यांचे नाव : <span class="required-star">*</span></label><input type="text" class="form-control" id="principalName" required></div>
-                                <div class="col-md-6 mb-3"><label class="form-label">३) समन्वयकाचे नाव : <span class="required-star">*</span></label><input type="text" class="form-control" id="coordinatorName" required></div>
-                                <div class="col-md-6 mb-3"><label class="form-label">४) विद्यार्थ्यांचे संपूर्ण नाव : <span class="required-star">*</span></label><input type="text" class="form-control fw-bold" id="studentName" placeholder="FIRST NAME / MIDDLE NAME / LAST NAME" required></div>
+                                <div class="col-md-12 mb-3"><label class="form-label">१) महाविद्यालयाचे नाव : <span
+                                            class="required-star">*</span></label><input type="text"
+                                        class="form-control" id="collegeName" required></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">२) प्राचार्यांचे नाव : <span
+                                            class="required-star">*</span></label><input type="text"
+                                        class="form-control" id="principalName" required></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">३) समन्वयकाचे नाव : <span
+                                            class="required-star">*</span></label><input type="text"
+                                        class="form-control" id="coordinatorName" required></div>
+                                <div class="col-md-6 mb-3"><label class="form-label">४) विद्यार्थ्यांचे संपूर्ण नाव :
+                                        <span class="required-star">*</span></label><input type="text"
+                                        class="form-control fw-bold" id="studentName"
+                                        placeholder="FIRST NAME / MIDDLE NAME / LAST NAME" required></div>
                             </div>
-                            <button type="button" class="btn btn-warning fw-bold w-100 my-2" id="lockBtn" onclick="lockProfile()">🔒 माहिती निश्चित (Lock) करा</button>
+                            <button type="button" class="btn btn-warning fw-bold w-100 my-2" id="lockBtn"
+                                onclick="lockProfile()">🔒 माहिती निश्चित (Lock) करा</button>
                         </div>
-                        <div id="profile-lock-message" class="alert alert-success d-none fw-bold">✓ प्रोफाइल माहिती यशस्वीरीत्या लॉक झाली आहे आणि सुरक्षित केली गेली आहे.</div>
+                        <div id="profile-lock-message" class="alert alert-success d-none fw-bold">✓ प्रोफाइल माहिती
+                            यशस्वीरीत्या लॉक झाली आहे आणि सुरक्षित केली गेली आहे.</div>
 
-                        <div class="page-header" style="background:linear-gradient(45deg,#e07a5f,#f4a261)">भाग २: ध्येय निश्चिती</div>
+                        <div class="page-header" style="background:linear-gradient(45deg,#e07a5f,#f4a261)">भाग २: ध्येय
+                            निश्चिती</div>
                         <div class="row">
-                            <div class="col-md-6 mb-3"><label class="form-label text-success fw-bold">● प्लॅन A :</label><input type="text" class="form-control" id="planA" placeholder="Plan A साठी केलेले प्रयत्न"></div>
-                            <div class="col-md-6 mb-3"><label class="form-label text-warning fw-bold">● प्लॅन B :</label><input type="text" class="form-control" id="planB" placeholder="Plan B साठी केलेले प्रयत्न"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label text-success fw-bold">● प्लॅन A
+                                    :</label><input type="text" class="form-control" id="planA"
+                                    placeholder="Plan A साठी केलेले प्रयत्न"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label text-warning fw-bold">● प्लॅन B
+                                    :</label><input type="text" class="form-control" id="planB"
+                                    placeholder="Plan B साठी केलेले प्रयत्न"></div>
                         </div>
 
                         <div class="page-header">भाग ३: मासिक प्रगती अहवाल (Dashboard)</div>
                         <div class="card p-3 mb-4 bg-light shadow-sm">
-                            <label class="form-label fw-bold text-primary">🔄 महिना निवडा (✅ पूर्ण झालेले महिने हायलाइट दिसतील):</label>
-                            <select class="form-select fs-5 fw-bold" id="monthSelector" onchange="switchMonth(this.value)">
+                            <label class="form-label fw-bold text-primary">🔄 महिना निवडा (✅ पूर्ण झालेले महिने हायलाइट
+                                दिसतील):</label>
+                            <select class="form-select fs-5 fw-bold" id="monthSelector"
+                                onchange="switchMonth(this.value)">
                                 <option value="0" id="opt-0">जुलै (July 2026)</option>
                                 <option value="1" id="opt-1">ऑगस्ट (August 2026)</option>
                                 <option value="2" id="opt-2">सप्टेंबर (September 2026)</option>
@@ -147,22 +206,22 @@
         const db = getDatabase(app);
 
         let profileLocked = false;
-        
+
         const MONTHS = [
-            "जुलै (July 2026)", "ऑगस्ट (August 2026)", "सप्टेंबर (September 2026)", "ऑक्टोबर (October 2026)", 
-            "नोव्हेंबर (November 2026)", "डिसेंबर (December 2026)", "जानेवारी (January 2027)", "फेब्रुवारी (February 2027)", 
+            "जुलै (July 2026)", "ऑगस्ट (August 2026)", "सप्टेंबर (September 2026)", "ऑक्टोबर (October 2026)",
+            "नोव्हेंबर (November 2026)", "डिसेंबर (December 2026)", "जानेवारी (January 2027)", "फेब्रुवारी (February 2027)",
             "मार्च (March 2027)", "एप्रिल (April 2027)", "मे (May 2027)", "जून (June 2027)"
         ];
         const FB_KEYS = ["July2026", "August2026", "September2026", "October2026", "November2026", "December2026", "January2027", "February2027", "March2027", "April2027", "May2027", "June2027"];
         const PFXS = ["july", "aug", "sep", "oct", "nov", "dec", "jan", "feb", "mar", "apr", "may", "jun"];
-        
+
         let submittedMonths = {};
 
         let html = "";
         MONTHS.forEach((m, i) => {
             const p = PFXS[i], k = FB_KEYS[i];
-            const isDec = (i === 5);  
-            const isJune = (i === 11); 
+            const isDec = (i === 5);
+            const isJune = (i === 11);
 
             html += `<div class="month-section" id="month-${i}">
                 <h4 class="${(isDec || isJune) ? "text-danger" : "text-primary"} fw-bold mb-4">&#128197; ${m}</h4>
@@ -228,7 +287,7 @@
                     const userData = snapshot.val();
                     profileLocked = true;
 
-                    if(userData.Profile) {
+                    if (userData.Profile) {
                         document.getElementById("collegeName").value = userData.Profile.college || "";
                         document.getElementById("principalName").value = userData.Profile.principalName || "";
                         document.getElementById("coordinatorName").value = userData.Profile.coordinatorName || "";
@@ -249,14 +308,14 @@
                             if (userData.Months[key]) {
                                 submittedMonths[idx] = true;
                                 const pfx = PFXS[idx];
-                                
-                                if(document.getElementById(`${pfx}_1`)) {
+
+                                if (document.getElementById(`${pfx}_1`)) {
                                     document.getElementById(`${pfx}_1`).value = userData.Months[key].book || "";
                                     document.getElementById(`${pfx}_2`).value = userData.Months[key].skill || "";
                                     document.getElementById(`${pfx}_3`).value = userData.Months[key].meeting || "";
                                     document.getElementById(`${pfx}_4`).value = userData.Months[key].activity || "";
                                     document.querySelectorAll(`.${pfx}-req`).forEach(t => t.disabled = true);
-                                    if(document.getElementById(`btn-submit-${idx}`)) {
+                                    if (document.getElementById(`btn-submit-${idx}`)) {
                                         document.getElementById(`btn-submit-${idx}`).disabled = true;
                                     }
                                 }
@@ -275,7 +334,7 @@
                             }
                         });
                     }
-                    
+
                     highlightCompletedMonthsInDropdown();
                     alert("✓ तुमची जुनी माहिती यशस्वीरीत्या लोड झाली आहे!");
                 } else {
@@ -324,10 +383,10 @@
 
         window.switchMonth = val => {
             const targetIndex = parseInt(val);
-            if (!profileLocked) { 
-                alert("⚠️ आधी वर मोबाईल नंबर टाकून प्रोफाइल माहिती व्हेरिफाय किंवा लॉक करा."); 
-                document.getElementById("monthSelector").value = "0"; 
-                return; 
+            if (!profileLocked) {
+                alert("⚠️ आधी वर मोबाईल नंबर टाकून प्रोफाइल माहिती व्हेरिफाय किंवा लॉक करा.");
+                document.getElementById("monthSelector").value = "0";
+                return;
             }
 
             for (let j = 0; j < targetIndex; j++) {
@@ -346,11 +405,11 @@
 
         window.submitMonth = async (index, monthName, prefix, isCertificateMonth, downloadZoneId) => {
             if (!profileLocked) { alert("❌ आधी प्रोफाइल लॉक करा!"); return; }
-            
+
             let empty = false;
             document.querySelectorAll(`.${prefix}-req`).forEach(t => { if (!t.value.trim()) empty = true; });
             if (empty) { alert("❌ सर्व ४ निकष भरणे अनिवार्य आहे!"); return; }
-            
+
             const phone = document.getElementById("contactNumber").value.replace(/\D/g, "");
             const data = {
                 book: document.getElementById(`${prefix}_1`).value,
@@ -359,19 +418,19 @@
                 activity: document.getElementById(`${prefix}_4`).value,
                 submittedAt: new Date().toISOString()
             };
-            
+
             alert(`⏳ ${MONTHS[index]} डेटा सेव्ह होत आहे...`);
             try {
                 await set(ref(db, `DiaryUsers/${phone}/Months/${monthName}`), data);
-                submittedMonths[index] = true; 
-                
+                submittedMonths[index] = true;
+
                 document.querySelectorAll(`.${prefix}-req`).forEach(t => t.disabled = true);
-                if(document.getElementById(`btn-submit-${index}`)) {
+                if (document.getElementById(`btn-submit-${index}`)) {
                     document.getElementById(`btn-submit-${index}`).disabled = true;
                 }
-                
+
                 highlightCompletedMonthsInDropdown();
-                
+
                 if (isCertificateMonth && downloadZoneId) {
                     document.getElementById(downloadZoneId).classList.remove("d-none");
                     alert(`🏆 अभिनंदन! ${MONTHS[index]} चा डेटा यशस्वीरीत्या मिळाला. प्रमाणपत्र डाऊनलोड करा.`);
@@ -391,7 +450,6 @@
             });
         };
 
-        // dynamic subtitle पॅरामीटर (isFinal) सह अपडेटेड सर्टिफिकेट फंक्शन
         window.downloadCertificate = async (isFinal) => {
             const studentName = document.getElementById("studentName").value.trim().toUpperCase() || "STUDENT NAME";
             const { jsPDF } = window.jspdf;
@@ -406,12 +464,12 @@
                 const mapWatermark = await loadImage("maharashtra-map.png");
                 doc.saveGraphicsState(); doc.setGState(new doc.GState({ opacity: 0.08 }));
                 doc.addImage(mapWatermark, "PNG", (W / 2) - 210, (H / 2) - 160, 450, 450); doc.restoreGraphicsState();
-            } catch (e) {}
+            } catch (e) { }
 
             try {
                 const leftLogo = await loadImage("left-logo1.png"); doc.addImage(leftLogo, "JPEG", 45, 40, 75, 75);
                 const rightLogo = await loadImage("right-logo.png"); doc.addImage(rightLogo, "PNG", 725, 40, 75, 75);
-            } catch (e) {}
+            } catch (e) { }
 
             doc.setFont("Helvetica", "bold").setFontSize(14).setTextColor(150, 20, 0);
             doc.text("MAHARASHTRA STATE HIGHER AND TECHNICAL EDUCATION DEPARTMENT", W / 2, 50, { align: "center" });
@@ -429,10 +487,9 @@
             doc.setFont("Helvetica", "bold").setFontSize(20).setTextColor(130, 25, 15).text(studentName, W / 2, 285, { align: "center" });
             doc.line(212, 298, 630, 298);
 
-            // डायनॅमिक टेक्स्ट कंडिशन (६ महिने वि. १२ महिने)
             doc.setFont("Helvetica", "normal").setTextColor(50, 50, 50);
             if (isFinal) {
-                doc.setFontSize(10); // लांब लाईन व्यवस्थित बसण्यासाठी साईझ लहान केली
+                doc.setFontSize(10);
                 doc.text("Presented for Demonstrating Consistency, Discipline, and Successful Completion of the One-Year Career Diary Initiative.", W / 2, 345, { align: "center" });
             } else {
                 doc.setFontSize(11);
@@ -445,7 +502,7 @@
 
             try {
                 const signatureImg = await loadImage("Sign.jpeg"); doc.addImage(signatureImg, "JPEG", 660, 415, 100, 50);
-            } catch (e) {}
+            } catch (e) { }
 
             doc.line(610, 472, 800, 472); doc.setFont("Helvetica", "bold").setFontSize(10).text("Yashwant Shitole", 800, 485, { align: "center" });
             doc.setFont("Helvetica", "normal").setFontSize(8).setTextColor(100, 100, 100).text("President", 800, 496, { align: "right" });
